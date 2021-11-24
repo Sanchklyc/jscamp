@@ -1,41 +1,64 @@
-import { BaseLogger, ElasticLogger, MongoLogger } from "../crossCuttingConcerns/logging/logger.js"
-import Customer from "../models/customer.js"
-import User from "../models/user.js"
-import UserService from "../services/userService.js"
+import CustomConsole from "../core/extensions/consoleExtensions.js";
+import DependencyContainer from "../dependencyResolvers/dependencyContainer.js";
 
-console.log("User component yüklendi")
+let userService = DependencyContainer.getUserService();
+CustomConsole.logInfo(
+  "〰〰〰〰〰〰〰〰 User Component Başlangıç 〰〰〰〰〰〰〰〰〰〰〰〰"
+);
+CustomConsole.logSuccess(
+  "Call for UserService.GetAll Result is ➡",
+  userService.getAll()
+);
+CustomConsole.logSuccess(
+  "Call for UserService.Add Result is ➡",
+  userService.add({
+    id: 8,
+    firstName: "Deneme",
+    lastName: "123812",
+    city: "Ankara",
+    age: 36,
+  })
+);
 
-let logger1 = new MongoLogger()
-let userService = new UserService(logger1)
+CustomConsole.logDanger(
+  "Call for UserService.Add with invalid user Result is ➡",
+  userService.add({
+    id: 8,
+    firstName: "d",
+    lastName: "Demiroğ",
+    city: "Ankara",
+    age: 36,
+  })
+);
 
-let user1 = new User(1,"Engin","Demiroğ","Ankara")
-let user2 = new User(2,"Baran","Gökçekli","Muğla")
-userService.add(user1)
-userService.add(user2)
+CustomConsole.logDanger(
+  "Call for UserService.Add with invalid business rule Result is ➡",
+  userService.add({
+    id: 8,
+    firstName: "Engin",
+    lastName: "Demiroğ",
+    city: "Ankara",
+    age: 36,
+  })
+);
 
-//console.log(userService.list())
-//console.log(userService.getById(2))
+CustomConsole.logSuccess(
+  `Call for UserService.GetAll Result is ➡`,
+  userService.getAll()
+);
+CustomConsole.logSuccess(
+  "Call for UserService.GetUserById.1 Result is ➡",
+  userService.getUserById(1)
+);
+CustomConsole.logDanger(
+  "Call for UserService.GetUserById.1123 Result is ➡",
+  userService.getUserById(1123)
+);
+CustomConsole.logSuccess(
+  "Call for UserService.GetUsersSorted.firstName Result is ➡",
+  userService.getUsersSorted("firstName")
+);
 
-
-
-
-let customer = {id:1, firstName:"Engin"}
-
-//prototyping
-customer.lastName = "Demiroğ"
-
-console.log(customer.lastName)
-
-console.log("--------------------------")
-userService.load()
-
-
-let customerToAdd = new Customer(1,"Seda","Yılmaz","Ankara","fdgdfg");
-customerToAdd.type = "customer"
-
-userService.add(customerToAdd)
-console.log(userService.customers)
-console.log(userService.employees)
-console.log(userService.errors)
-console.log(userService.getCustomersSorted())
-//22.00 Dersteyiz
+CustomConsole.logInfo(
+  "〰〰〰〰〰〰〰〰 User Component Bitiş 〰〰〰〰〰〰〰〰〰〰〰〰"
+);

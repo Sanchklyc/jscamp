@@ -1,0 +1,10 @@
+export const UsersListed = "Kullanıcılar listelendi.";
+export const UserListed = "Kullanıcı bilgileri getirildi.";
+export const UserAdded = "Kullanıcı başarıyla eklendi.";
+export const UserNotFound = "Böyle bir kullanıcı bulunamadı.";
+export const UserWithSameLastNameAlreadyExists = "Bu soyadı ile zaten bir kullanıcı mevcut.";
+export const CustomersListed = "Müşteriler listelendi.";
+export const CustomerAdded = "Müşteri başarıyla eklendi.";
+export const CustomerWithSameCreditCardAlreadyExists = "Bu kredi kartıyla ilişkili bir müşteri mevcut.";
+export const CustomerNotFound = "Böyle bir müşteri bulunamadı.";
+export const CustomerListed = "Müşteri bilgileri getirildi.";
